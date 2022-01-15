@@ -42,7 +42,7 @@ main (int argc, char *argv[])
 
 	for (indice = 1; indice < NUMERO_ARGUMENTOS; indice++)
 	{	
-		if (strlen (argv[indice]) != 1)
+		if (strlen(argv[indice]) != 1)
 		{
 			printf ("Comprimento do digito %u invalido.\n", indice - 1);
 			exit (COMPRIMENTO_ARGUMENTO_INVALIDO);

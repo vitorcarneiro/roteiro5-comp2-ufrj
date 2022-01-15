@@ -14,7 +14,7 @@ $Log$
 */
 
 #ifndef _AULA0501_
-#define _AULA0501_			"@(#)aula0501.h $Revision$"
+#define _AULA0501_				"@(#)aula0501.h $Revision$"
 
 #define COMPRIMENTO_RG			9
 
@@ -22,14 +22,17 @@ typedef enum
 {
 	ok,
 	argumentoInvalido,
-	digitoInvalido
+	digitoInvalido,
+	digitoVerificadorInvalido
 } tipoErros;
 
 typedef unsigned char byte;
 
 tipoErros
-GerarDigitosVerificadoresRg (byte [COMPRIMENTO_RG - 1] /* entrada/saida */);
+GerarDigitosVerificadoresRg(byte[COMPRIMENTO_RG - 1] /* entrada/saida */);
 
+tipoErros
+ValidarRg(byte[COMPRIMENTO_RG] /* entrada */);
 
 #endif
 
