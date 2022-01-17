@@ -54,7 +54,7 @@ GerarDigitosVerificadoresRg(char *rg8, char *dv)
 tipoErros
 ValidarRg (char *rg)
 {
-	char rgParaValidar[COMPRIMENTO_RG - 1], dv;
+	char rgParaValidar[COMPRIMENTO_RG], dv;
 	unsigned short indice;
 	tipoErros codigoRetorno;
 	

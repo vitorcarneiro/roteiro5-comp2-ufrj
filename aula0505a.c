@@ -29,7 +29,7 @@ $Log$
 int
 main (int argc, char *argv[])
 {
-	char rg8[8], dv;
+	char rg8[COMPRIMENTO_RG], dv;
 	unsigned indice;
 	tipoErros codigoRetorno;
 

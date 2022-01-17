@@ -31,7 +31,7 @@ $Log$
 int
 main (int argc, char *argv[])
 {
-	char rg[COMPRIMENTO_RG];
+	char rg[COMPRIMENTO_RG + 1];
 	unsigned indice, indicePrint;
 	tipoErros codigoRetorno;
 
