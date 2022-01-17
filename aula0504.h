@@ -14,7 +14,7 @@ $Log$
 */
 
 #ifndef _AULA0504_
-#define _AULA0504_			"@(#)aula0504.h $Revision$"
+#define _AULA0504_				"@(#)aula0504.h $Revision$"
 
 #define COMPRIMENTO_RG			9
 
@@ -28,6 +28,9 @@ typedef enum
 
 tipoErros
 GerarDigitosVerificadoresRg(char * /* entrada */, char * /* saida - DV */);
+
+tipoErros
+ValidarRg(char *);
 
 #endif
 

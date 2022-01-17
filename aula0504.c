@@ -48,7 +48,32 @@ GerarDigitosVerificadoresRg(char *rg8, char *dv)
 
 	*dv = rg[8] + '0';
 	
-	return ok;	
+	return ok;
+}
+
+tipoErros
+ValidarRg (char *rg)
+{
+	char rgParaValidar[COMPRIMENTO_RG - 1], dv;
+	unsigned short indice;
+	tipoErros codigoRetorno;
+	
+	if (rg == NULL)
+		return argumentoInvalido;
+
+	for (indice = 0; indice < COMPRIMENTO_RG - 1; indice++)
+		rgParaValidar[indice] = rg[indice];
+
+	rgParaValidar[8] = '\0';
+
+	codigoRetorno = GerarDigitosVerificadoresRg(&rgParaValidar[0], &dv);
+	if (codigoRetorno != ok)
+		return codigoRetorno;
+	
+	if (rg[8] != dv)
+		return digitoVerificadorInvalido;
+
+	return ok;
 }
 
 /* $RCSfile$ */
