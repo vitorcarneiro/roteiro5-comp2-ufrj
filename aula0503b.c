@@ -49,7 +49,7 @@ main (int argc, char *argv[])
 	if(strlen(argv[1]) != COMPRIMENTO_RG + 3)
 	{
 		printf("Comprimento do RG invalido (%lu digito%s\n", strlen(argv[1]), strlen(argv[1]) == 1 ? ")." : "s).");
-		printf("O RG deve conter apenas 9 digitos com ponto (\".\") e traco (\"-\"), totalizando em 12 digitos.\n");
+		printf("O RG deve conter apenas 9 digitos com pontos (\".\") e traco (\"-\"), totalizando em 12 digitos.\n");
         printf("\n");
         printf("Necessario ponto (\".\") depois do segundo e quinto digito do RG\n");
 		printf("Necessario traco (\"-\") depois do setimo digito do RG\n");
@@ -67,7 +67,7 @@ main (int argc, char *argv[])
                 printf("\n");
                 printf("E tambem necessita traco (\"-\") depois do oitavo digito do RG\n");
 	            printf("Formato: XX.XXX.XXX-X\n");
-				exit (FALTA_PONTO_OU_TRACO);
+				exit(FALTA_PONTO_OU_TRACO);
 			}
 		
 			indicePrint++;
