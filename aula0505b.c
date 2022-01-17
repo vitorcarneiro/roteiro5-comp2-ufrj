@@ -22,7 +22,8 @@ $Log$
 #define OK						                    0
 #define NUMERO_ARGUMENTOS_INVALIDO			        1
 #define COMPRIMENTO_ARGUMENTO_INVALIDO			    2
-#define FUNCAO_RETORNOU_ERRO				        3
+#define FALTA_PONTO                        		    3
+#define FUNCAO_RETORNOU_ERRO				        4
 
 #define NUMERO_ARGUMENTOS				            2
 
@@ -30,29 +31,47 @@ int
 main (int argc, char *argv[])
 {
 	char rg8[8], dv;
-	unsigned indice;
+	unsigned indice, indicePrint;
 	tipoErros codigoRetorno;
 
 	if(argc != NUMERO_ARGUMENTOS)
 	{
 		printf("Digite cada digito do RG (sem o digito verificador) como um unico argumento (8 digitos).\n");
 		printf("Foi digitado %i digito%c\n", argc - 1, (argc - 1) == 1 ? ' ' : 's');
-		printf("Uso: %s <D1> <D2> <D3> <D4> <D5> <D6> <D7> <D8>\n", argv[0]);
-		exit (NUMERO_ARGUMENTOS_INVALIDO);
+		printf("Uso: %s <D1><D2>.<D3><D4><D5>.<D6><D7><D8>\n", argv[0]);
+        printf("Formato: XX.XXX.XXX\n");
+
+		exit(NUMERO_ARGUMENTOS_INVALIDO);
 	}
 
-	for(indice = 1; indice < NUMERO_ARGUMENTOS; indice++)
-	{	
-		if(strlen(argv[indice]) != 1)
+    if(strlen(argv[1]) != COMPRIMENTO_RG + 1)
+	{
+		printf("Comprimento do RG invalido (%lu digito%s\n", strlen(argv[1]), strlen(argv[1]) == 1 ? ")." : "s).");
+		printf("O RG sem o digito verificador deve conter apenas 8 digitos com pontos(\".\"), totalizando em 10 digitos...\n");
+		printf("Necessario ponto (\".\") depois do segundo e quinto digito do RG\n");
+		printf("Formato: XX.XXX.XXX\n");
+		exit (COMPRIMENTO_ARGUMENTO_INVALIDO);
+	}
+
+    for (indice = indicePrint = 0; indicePrint < COMPRIMENTO_RG + 1; indicePrint++)
+	{
+		if (indicePrint == 2 || indicePrint == 6)
 		{
-			printf("Comprimento do digito %u invalido.\n", indice);
-			exit(COMPRIMENTO_ARGUMENTO_INVALIDO);
+			if(argv[1][indicePrint] != '.')
+			{
+                printf("Necessario ponto (\".\") depois do segundo e quinto digito do RG\n");
+	            printf("Formato: XX.XXX.XXX\n");
+				exit (FALTA_PONTO);
+			}
+		
+			indicePrint++;
 		}
 
-		rg8[indice - 1] = argv[indice][0] - '\0';
+		rg8[indice] = argv[1][indicePrint] - '\0';
+        indice++;
 	}
     rg8[8] = '\0';
-
+    
 	codigoRetorno = GerarDigitosVerificadoresRg(&rg8[0], &dv);
 	if(codigoRetorno != ok)
 	{
